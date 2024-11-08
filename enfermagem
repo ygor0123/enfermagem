@@ -15,8 +15,8 @@
     <!-- Formulário para entrada de dados -->
     Número do Ingresso: <input id="ingresso"><br><br>
     Idade: <input id="idade" type="number"><br><br>
-    <button onclick="verificarCadastro()">Verificar</button>
-    <h3>Resultados:</h3>
+    <button onclick="verificarCadastro()">ENVIAR</button>
+    
     <div id="resultados"></div>
 
     <script>
@@ -31,19 +31,8 @@
             const idade = document.getElementById('idade').value;
 
             // Validar número do ingresso (mínimo de 5 caracteres)
-            if (ingresso.length >= 5) {
-                resultadosDiv.innerHTML += '<p class="pass">✔️ Número do ingresso válido</p>';
+            if (ingresso.length >= 5 && idade >= 18) {
+                sessionStorage.setItem('ingresso', ingresso); // sessionStorage.setItem:permite armazenar window.location.href = 'https://www.youtube.com/'
             } else {
-                resultadosDiv.innerHTML += '<p class="fail">❌ Número do ingresso inválido (mínimo 5 caracteres)</p>';
+             alert('ACESSO NEGADO: Verifique as informações.'); }
             }
-
-            // Validar idade (deve ser 18 anos ou mais)
-            if (idade >= 18) {
-                resultadosDiv.innerHTML += '<p class="pass">✔️ Idade válida</p>';
-            } else {
-                resultadosDiv.innerHTML += '<p class="fail">❌ Idade inválida (deve ser 18 anos ou mais)</p>';
-            }
-        }
-    </script>
-</body>
-</html>
