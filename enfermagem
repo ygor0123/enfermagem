@@ -31,8 +31,17 @@
             const idade = document.getElementById('idade').value;
 
             // Validar número do ingresso (mínimo de 5 caracteres)
-            if (ingresso.length >= 5 && idade >= 18) {
-                sessionStorage.setItem('ingresso', ingresso); // sessionStorage.setItem:permite armazenar window.location.href = 'https://www.youtube.com/'
-            } else {
+            if (ingresso.length === 5 && idade >= 18) {
+                sessionStorage.setItem('ingresso', ingresso); // sessionStorage.setItem:permite armazenar 
+                sessionStorage.setItem('idade', idade);
+                 window.location.href = 'https://github.com/'
              alert('ACESSO NEGADO: Verifique as informações.'); }
             }
+        
+
+            
+        
+        
+    </script>
+</body>
+</html>
