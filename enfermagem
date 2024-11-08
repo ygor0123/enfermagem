@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação de Cadastro</title>
+    <style>
+        .pass { color: green; }
+        .fail { color: red; }
+    </style>
+</head>
+<body>
+    <h2>Verificação de Cadastro</h2>
+
+    <!-- Formulário para entrada de dados -->
+    Número do Ingresso: <input id="ingresso"><br><br>
+    Idade: <input id="idade" type="number"><br><br>
+    <button onclick="verificarCadastro()">Verificar</button>
+    <h3>Resultados:</h3>
+    <div id="resultados"></div>
+
+    <script>
+        // Função para verificar o ingresso e a idade
+        function verificarCadastro() {
+            // Limpar resultados anteriores
+            const resultadosDiv = document.getElementById('resultados');
+            resultadosDiv.innerHTML = '';
+
+            // Obter valores de entrada
+            const ingresso = document.getElementById('ingresso').value;
+            const idade = document.getElementById('idade').value;
+
+            // Validar número do ingresso (mínimo de 5 caracteres)
+            if (ingresso.length >= 5) {
+                resultadosDiv.innerHTML += '<p class="pass">✔️ Número do ingresso válido</p>';
+            } else {
+                resultadosDiv.innerHTML += '<p class="fail">❌ Número do ingresso inválido (mínimo 5 caracteres)</p>';
+            }
+
+            // Validar idade (deve ser 18 anos ou mais)
+            if (idade >= 18) {
+                resultadosDiv.innerHTML += '<p class="pass">✔️ Idade válida</p>';
+            } else {
+                resultadosDiv.innerHTML += '<p class="fail">❌ Idade inválida (deve ser 18 anos ou mais)</p>';
+            }
+        }
+    </script>
+</body>
+</html>
