@@ -3,45 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificação de Cadastro</title>
-    <style>
-        .pass { color: green; }
-        .fail { color: red; }
-    </style>
-</head>
-<body>
-    <h2>Verificação de Cadastro</h2>
-
-    <!-- Formulário para entrada de dados -->
-    Número do Ingresso: <input id="ingresso"><br><br>
-    Idade: <input id="idade" type="number"><br><br>
-    <button onclick="verificarCadastro()">ENVIAR</button>
+</style>
+<index class="html"><!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cadastro de Enfermagem</title>
+        <link rel="stylesheet" href="style.css"> <!-- Vincula o arquivo CSS externo -->
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>Cadastro de Profissional de Enfermagem</h1>
+            </header>
     
-    <div id="resultados"></div>
-
-    <script>
-        // Função para verificar o ingresso e a idade
-        function verificarCadastro() {
-            // Limpar resultados anteriores
-            const resultadosDiv = document.getElementById('resultados');
-            resultadosDiv.innerHTML = '';
-
-            // Obter valores de entrada
-            const ingresso = document.getElementById('ingresso').value;
-            const idade = document.getElementById('idade').value;
-
-            // Validar número do ingresso (mínimo de 5 caracteres)
-            if (ingresso.length === 5 && idade >= 18) {
-                sessionStorage.setItem('ingresso', ingresso); // sessionStorage.setItem:permite armazenar 
-                sessionStorage.setItem('idade', idade);
-                 window.location.href = 'https://github.com/'
-             alert('ACESSO NEGADO: Verifique as informações.'); }
+            <form id="cadastroForm">
+                <div class="input-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+    
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+    
+                <div class="input-group">
+                    <label for="crm">Número do CRM</label>
+                    <input type="text" id="crm" name="crm" required>
+                </div>
+    
+                <div class="input-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" required>
+                </div>
+                <div class="input-group">
+                    <label for="confirmarSenha">Confirmar Senha</label>
+                    <input type="password" id="confirmarSenha" name="confirmarSenha" required>
+                </div>
+    
+                <button type="submit">Cadastrar</button>
+            </form>
+    
+            <div id="mensagemErro" class="erro"></div>
+        </div>
+        <script src="script.js"></script> <!-- Vincula o arquivo JavaScript externo -->
+    ></style>
+    <script class="js">// Função de validação do formulário
+        document.getElementById('cadastroForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Previne o envio do formulário
+        
+            // Limpar mensagens de erro anteriores
+            document.getElementById('mensagemErro').textContent = '';
+        
+            // Obter os valores dos campos
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const crm = document.getElementById('crm').value;
+            const senha = document.getElementById('senha').value;
+            const confirmarSenha = document.getElementById('confirmarSenha').value;
+        
+            // Validação do nome
+            if (!nome || nome.length < 3) {
+                document.getElementById('mensagemErro').textContent = 'Nome inválido.';
+                return;
             }
         
+            // Validação do email
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!email || !emailRegex.test(email)) {
+                document.getElementById('mensagemErro').textContent = 'E-mail inválido.';
+                return;
+            }
+        
+            // Validação do CRM (só números)
+            const crmRegex = /^[0-9]{4,6}$/;
+            if (!crm || !crmRegex.test(crm)) {
+                document.getElementById('mensagemErro').textContent = 'Número do CRM inválido.';
+                return;
+            }
+        
+            // Validação da senha
+            if (!senha || senha.length < 6) {
+                document.getElementById('mensagemErro').textContent = 'A senha deve ter pelo menos 6 caracteres.';
+                return;
+            }
+        
+            // Verificar se a senha e a confirmação são iguais
+            if (senha !== confirmarSenha) {
+                document.getElementById('mensagemErro').textContent = 'As senhas não coincidem.';
+                return;
+            }
+        
+            // Se tudo estiver correto, mostrar mensagem de sucesso (por exemplo)
+            alert('Cadastro realizado com sucesso!');
+            // Aqui você pode adicionar a lógica para enviar os dados para um servidor ou API
+        });
+        </script>
+        </body>
+        </html>
+        </index>
 
-            
-        
-        
-    </script>
-</body>
-</html>
+
+
